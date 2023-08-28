@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "generate-otp": "^1.0.6",
+    "mailgen": "^2.0.27",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.9.1",
+    "otp-generator": "^4.0.1",
+    "swiper": "^10.1.0"
+  }
+}
