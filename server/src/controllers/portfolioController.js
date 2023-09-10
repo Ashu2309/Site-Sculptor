@@ -208,3 +208,81 @@ export const deleteprojectdata = async (req, res) => {
 
     }
 }
+
+// ==================Skills-===========================
+
+export const setskilldata = async (req, res) => {
+    try {
+        const { user } = req.params;
+        const newskills = req.body.input;
+
+        // Log the "newskills" data
+        console.log("Received Skills Data:", newskills);
+
+        const options = { new: true, useFindAndModify: false };
+        const updatedData = await ProfileModel.findOneAndUpdate(
+            { "username": user },
+            { $push: { skills: newskills } },
+            options
+        );
+
+        if (!updatedData) {
+            return res.status(404).send("Profile not found");
+        }
+
+        return res.status(200).send("Skills created successfully");
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send("Internal Server Error");
+    }
+}
+
+
+export const updateskilldata = async (req, res) => {
+    try {
+        const { user } = req.params;
+        const { update } = req.body; // update is an object with fields to be updated
+        const { indexno } = req.body; // get the _id field of the update object
+
+        const options = { useFindAndModify: false };
+        const updatedData = await ProfileModel.findOneAndUpdate(
+            { "username": user },
+            { $set: { [`skills.${indexno}`]: update } },
+            options
+        );
+
+        if (!updatedData) {
+            return res.status(404).send("Profile not found");
+        }
+
+        return res.status(200).send("skill updated successfully");
+    } catch (error) {
+        return res.status(404).send("Couldn't update skill");
+    }
+}
+
+export const deleteskilldata = async (req, res) => {
+    try {
+        const { user, index } = req.params;
+        console.log(user, index)
+        const deleteData = await ProfileModel.findOneAndUpdate(
+            { "username": user },
+            { $unset: { [`skills.${index}`]: 1 } }
+        );
+
+        if (!deleteData) {
+            return res.status(404).send("Profile not found");
+        }
+
+        await ProfileModel.findOneAndUpdate(
+            { "username": user },
+            { $pull: { "skills": null } },
+            { new: true }
+        );
+
+        return res.status(200).send("Profile Deleted Successfully");
+    } catch (error) {
+        return res.status(500).send("Couldn't Delete");
+
+    }
+}

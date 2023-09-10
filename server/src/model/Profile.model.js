@@ -77,11 +77,20 @@ export const ProfileSchema = new mongoose.Schema({
     },],
     skills: [
         {
-            name: { type: String, required: true },
-            description: { type: String },
-            proficiency: { type: Number, required: true },
+            title: { type: String, required: true },
+            experience: { type: String },
+            skillsname: [
+                {
+                    name: { type: String, required: true },
+                    percentage: { type: Number, default: 0 }, // Add percentage field
+                }
+            ]
         },
     ],
+    links: [{
+        linkName: { type: String },
+        linkUrl: { type: String, required: true }
+    }]
 
 });
 

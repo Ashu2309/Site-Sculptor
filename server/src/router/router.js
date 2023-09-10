@@ -39,4 +39,8 @@ router.route('/setprojectdata/:user').post(profileController.setprojectdata);
 router.route('/updateprojectdata/:user').put(profileController.updateprojectdata);
 router.route('/deleteprojectdata/:user/:index').delete(profileController.deleteprojectdata);
 
+router.route('/setskilldata/:user').post(profileController.setskilldata);
+router.route('/updateskilldata/:user').put(profileController.updateskilldata);
+router.route('/deleteskilldata/:user/:index').delete(profileController.deleteskilldata);
+
 export default router;

@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import SideNav from '../helper/SideNav';
 import HomePage from '../Create Helpers/HomePage';
 import AboutPage from '../Create Helpers/AboutPage';
-import ResumePage from '../Create Helpers/ResumePage';
+import SkillsPage from '../Create Helpers/SkillsPage';
 import ExperiencePage from '../Create Helpers/ExperiencePage';
 import ProjectPage from '../Create Helpers/ProjectPage';
 
@@ -103,13 +103,13 @@ const Create = () => {
                         <>
                             <div>
                                 <AboutPage />
-                                <button className="bg-info text-light btn" onClick={() => setActive("Resume")}>Next</button>
+                                <button className="bg-info text-light btn" onClick={() => setActive("Skills")}>Next</button>
                             </div>
                         </>
-                    } {active == "Resume" &&
+                    } {active == "Skills" &&
                         <>
                             <div>
-                                <ResumePage />
+                                <SkillsPage />
                                 <button className="bg-info text-light btn" onClick={() => setActive("Project")}>Next</button>
                             </div>
                         </>

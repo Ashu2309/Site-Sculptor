@@ -129,3 +129,37 @@ input[type="file"] {
   top: 50%;
   opacity: 0.7;
 }
+
+/* nav buttons */
+.navigator {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+.navigator button {
+  height: 45px;
+  width: 45px;
+  background-color: blueviolet;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+  font-size: 25px;
+  color: #fff;
+  margin: 3px 0;
+}
+.navigator .optionsNav button:nth-child(1) {
+  background-color: blue;
+}
+.navigator .optionsNav button:nth-child(2) {
+  background-color: crimson;
+}
+.navigator .optionsNav button:nth-child(3) {
+  background-color: lightseagreen;
+}
+.navigator .optionsNav button:nth-child(4) {
+  background-color: dodgerblue;
+}
+.optionsNav {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import UserContext from './context/UserContext'
 
@@ -14,52 +14,49 @@ const Navbar = () => {
 
         navigate('/')
     }
+    const [nav, setNav] = useState(true);
     return (
         <div>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                <div className="container-fluid">
-                    <NavLink to="/profile" className="navbar-brand">Profile</NavLink>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav w-100 d-flex justify-content-between">
-                            <div className='d-flex'>
-                                <li className="nav-item">
-                                    <NavLink to="/create" className="nav-link">Create</NavLink>
-                                </li>
-                                {username ?
-                                    <li className="nav-item">
-                                        <NavLink to={`/portfolio/${username}`} className="nav-link">Portfolio</NavLink>
-                                    </li> :
-                                    <li className="nav-item">
-                                        <NavLink to={`/portfolio/${param}`} className="nav-link">Portfolio</NavLink>
-                                    </li>
-                                }
 
-                            </div>
-                            <div className='d-flex'>
+            <div className='navigator'>
+                {nav ?
+                    <div className="optionsNav">
 
-                                {!username ? <>
-                                    <li className="nav-item">
-                                        <NavLink to="/register" className="nav-link">Register</NavLink>
+                        <button className="openNav">
+                            <NavLink to="/" className="nav-link">
 
-                                    </li>
-                                    <li className="nav-item">
-                                        <NavLink to="/login" className="nav-link">Login</NavLink>
-                                    </li>
-                                </> :
-                                    <li className="nav-item">
-                                        <a className="nav-link" onClick={userLogout} style={{ cursor: "pointer" }}>Logout</a>
-                                    </li>
-                                }
-                            </div>
-
-                        </ul>
-
+                                <i class="fa-solid fa-house"></i>
+                            </NavLink>
+                        </button>
+                        <button className="openNav">
+                            <NavLink to="/profile" className="nav-link">
+                                <i class="fa-solid fa-user-pen"></i>
+                            </NavLink>
+                        </button>
+                        <button className="openNav">
+                            <NavLink to="/create" className="nav-link">
+                                <i class="fa-solid fa-pencil"></i>
+                            </NavLink>
+                        </button>
+                        <button className="openNav">
+                            <NavLink to={`/portfolio/${param}`} className="nav-link">
+                                <i class="fa-solid fa-up-right-from-square"></i>
+                            </NavLink>
+                        </button>
                     </div>
-                </div>
-            </nav>
+                    : null}
+
+                {nav ?
+                    <button className="openNav">
+                        <i class="fa-solid fa-grip-lines" onClick={() => setNav(false)}></i>
+                    </button>
+                    :
+                    <button className="closeNav">
+                        <i class="fa-solid fa-xmark" onClick={() => setNav(true)}></i>
+                    </button>
+                }
+
+            </div>
         </div>
     )
 }

@@ -255,11 +255,44 @@ const UserState = (props) => {
         }
     }
 
+    // ==============skill page=============
+    const saveSkillDetails = async (input) => {
+        console.log(input)
+        try {
+            const username = localStorage.getItem("username")
+            const response = await axios.post(`profile/setskilldata/${username}`, { input })
+            return response;
+        } catch (error) {
+            return error;
+        }
+    }
+    const updateSkillDetails = async (input) => {
+        console.log(input)
+        try {
+            const username = localStorage.getItem("username")
+            const response = await axios.put(`profile/updateskilldata/${username}`, input)
+            console.log(response)
+            return response
+        } catch (error) {
+            return error;
+        }
+    }
+    const deleteSkillDetails = async (index) => {
+        console.log(index)
+        try {
+            const username = localStorage.getItem("username")
+            const response = await axios.delete(`profile/deleteskilldata/${username}/${index}`)
+            return response;
+        } catch (error) {
+            return error;
+        }
+    }
+
 
     return (
         <>
             <UserContext.Provider
-                value={{ state, registerUser, verifyPassword, updateUser, generateOTP, verifyOTP, resetPassword, username, setUsername, saveUserDetails, getUserDetails, updateUserDetails, saveExpDetails, deleteExpDetails, updateExpDetails, saveProjDetails, updateProjDetails, deleteProjDetails }}
+                value={{ state, registerUser, verifyPassword, updateUser, generateOTP, verifyOTP, resetPassword, username, setUsername, saveUserDetails, getUserDetails, updateUserDetails, saveExpDetails, deleteExpDetails, updateExpDetails, saveProjDetails, updateProjDetails, deleteProjDetails, saveSkillDetails, updateSkillDetails, deleteSkillDetails }}
             >{props.children}</UserContext.Provider>
         </>
     )

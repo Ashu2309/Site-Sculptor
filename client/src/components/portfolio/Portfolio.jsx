@@ -395,166 +395,44 @@ const Portfolio = () => {
                     <div className='bg-light p-5 shadow'>
 
                         <div className="skills__container container grid">
-                            <div>
+                            {Array.isArray(userDetails.experience) ? (
 
-                                <div className="skills__content skills__open">
-                                    <div className="skills__header">
-                                        <i className="uil uil-brackets-curly skills__icon"></i>
+                                userDetails.skills.map((elem, ind) =>
 
-                                        <div>
-                                            <h1 className="skills__title">Frontend developer</h1>
-                                            <span className="skills__subtitle">More than 4 years</span>
+                                    <div className="skills__content skills__open">
+                                        <div className="skills__header">
+                                            <i className="uil uil-brackets-curly skills__icon"></i>
+
+                                            <div>
+                                                <h1 className="skills__title">{elem.title}</h1>
+                                                <span className="skills__subtitle">{elem.experience}</span>
+                                            </div>
+
+                                            <i className="uil uil-angle-down skills__arrow" ></i>
                                         </div>
 
-                                        <i className="uil uil-angle-down skills__arrow"></i>
-                                    </div>
+                                        <div className="skills__list grid">
+                                            {elem.skillsname.map((element, i) => (
+                                                <div className="skills__data">
+                                                    <div className="skills__titles">
+                                                        <h3 className="skills_name">{element.name}</h3>
+                                                        <span className="skills__number">{element.percentage}%</span>
+                                                    </div>
+                                                    <div className="skills__bar">
+                                                        <span className="skills__percentage" style={{ width: `${element.percentage}%` }}></span>
 
-                                    <div className="skills__list grid">
-                                        <div className="skills__data">
-                                            <div className="skills__titles">
-                                                <h3 className="skills_name">HTML</h3>
-                                                <span className="skills__number">90%</span>
-                                            </div>
-                                            <div className="skills__bar">
-                                                <span className="skills__percentage skills__html"></span>
-                                            </div>
-                                        </div>
+                                                    </div>
+                                                </div>
 
-                                        <div className="skills__data">
-                                            <div className="skills__titles">
-                                                <h3 className="skills_name">CSS</h3>
-                                                <span className="skills__number">80%</span>
-                                            </div>
-                                            <div className="skills__bar">
-                                                <span className="skills__percentage skills__css"></span>
-                                            </div>
-                                        </div>
-
-                                        <div className="skills__data">
-                                            <div className="skills__titles">
-                                                <h3 className="skills_name">JavaScript</h3>
-                                                <span className="skills__number">60%</span>
-                                            </div>
-                                            <div className="skills__bar">
-                                                <span className="skills__percentage skills__js"></span>
-                                            </div>
-                                        </div>
-
-                                        <div className="skills__data">
-                                            <div className="skills__titles">
-                                                <h3 className="skills_name">React</h3>
-                                                <span className="skills__number">85%</span>
-                                            </div>
-                                            <div className="skills__bar">
-                                                <span className="skills__percentage skills__react"></span>
-                                            </div>
+                                            ))}
                                         </div>
                                     </div>
-                                </div>
+                                )
 
-                                <div className="skills__content skills__close">
-                                    <div className="skills__header">
-                                        <i className="uil uil-server-network skills__icon"></i>
+                            ) : null}
 
-                                        <div>
-                                            <h1 className="skills__title">Backend developer</h1>
-                                            <span className="skills__subtitle">More than 2 years</span>
-                                        </div>
 
-                                        <i className="uil uil-angle-down skills__arrow"></i>
-                                    </div>
 
-                                    <div className="skills__list grid">
-                                        <div className="skills__data">
-                                            <div className="skills__titles">
-                                                <h3 className="skills_name">PHP</h3>
-                                                <span className="skills__number">80%</span>
-                                            </div>
-                                            <div className="skills__bar">
-                                                <span className="skills__percentage skills__php"></span>
-                                            </div>
-                                        </div>
-
-                                        <div className="skills__data">
-                                            <div className="skills__titles">
-                                                <h3 className="skills_name">Node Js</h3>
-                                                <span className="skills__number">70%</span>
-                                            </div>
-                                            <div className="skills__bar">
-                                                <span className="skills__percentage skills__node"></span>
-                                            </div>
-                                        </div>
-
-                                        <div className="skills__data">
-                                            <div className="skills__titles">
-                                                <h3 className="skills_name">Firebase</h3>
-                                                <span className="skills__number">90%</span>
-                                            </div>
-                                            <div className="skills__bar">
-                                                <span className="skills__percentage skills__firebase"></span>
-                                            </div>
-                                        </div>
-
-                                        <div className="skills__data">
-                                            <div className="skills__titles">
-                                                <h3 className="skills_name">Python</h3>
-                                                <span className="skills__number">55%</span>
-                                            </div>
-                                            <div className="skills__bar">
-                                                <span className="skills__percentage skills__python"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div>
-
-                                <div className="skills__content skills__close">
-                                    <div className="skills__header">
-                                        <i className="uil uil-swatchbook skills__icon"></i>
-
-                                        <div>
-                                            <h1 className="skills__title">Designer</h1>
-                                            <span className="skills__subtitle">More than 5 years</span>
-                                        </div>
-
-                                        <i className="uil uil-angle-down skills__arrow"></i>
-                                    </div>
-
-                                    <div className="skills__list grid">
-                                        <div className="skills__data">
-                                            <div className="skills__titles">
-                                                <h3 className="skills_name">Figma</h3>
-                                                <span className="skills__number">90%</span>
-                                            </div>
-                                            <div className="skills__bar">
-                                                <span className="skills__percentage skills__figma"></span>
-                                            </div>
-                                        </div>
-
-                                        <div className="skills__data">
-                                            <div className="skills__titles">
-                                                <h3 className="skills_name">Sketch</h3>
-                                                <span className="skills__number">85%</span>
-                                            </div>
-                                            <div className="skills__bar">
-                                                <span className="skills__percentage skills__sketch"></span>
-                                            </div>
-                                        </div>
-
-                                        <div className="skills__data">
-                                            <div className="skills__titles">
-                                                <h3 className="skills_name">Photoshop</h3>
-                                                <span className="skills__number">85%</span>
-                                            </div>
-                                            <div className="skills__bar">
-                                                <span className="skills__percentage skills__photoshop"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </section>
@@ -660,124 +538,7 @@ const Portfolio = () => {
                     </div>
                 </section>
 
-                <section className="services section" id="services">
-                    <h2 className="section__title">Services</h2>
-                    <span className="section__subtitle">What i offer</span>
 
-                    <div className="services__container container grid">
-
-                        <div className="services__content">
-                            <div>
-                                <i className="uil uil-web-grid services__icon"></i>
-                                <h3 className="services__title">UI/UX <br></br> Designer</h3>
-                            </div>
-                            <span className="button button--flex button--small button--link services__button">
-                                View More
-                                <i className="uil uil-arrow-right button__icon"></i>
-                            </span>
-
-                            <div className="services__modal">
-                                <div className="services__modal-content">
-                                    <h4 className="services__modal-title">UI/UX <br></br> Designer</h4>
-                                    <i className="uil uil-times services__modal-close"></i>
-
-                                    <ul className="services__modal-services grid">
-                                        <li className="services__modal-service">
-                                            <i className="uil uil-check-circle services__modal-icon"></i>
-                                            <p>I develop the user interface.</p>
-                                        </li>
-                                        <li className="services__modal-service">
-                                            <i className="uil uil-check-circle services__modal-icon"></i>
-                                            <p>Web page development.</p>
-                                        </li>
-                                        <li className="services__modal-service">
-                                            <i className="uil uil-check-circle services__modal-icon"></i>
-                                            <p>I create ux element interactions.</p>
-                                        </li>
-                                        <li className="services__modal-service">
-                                            <i className="uil uil-check-circle services__modal-icon"></i>
-                                            <p>I position your company.</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="services__content">
-                            <div>
-                                <i className="uil uil-arrow services__icon"></i>
-                                <h3 className="services__title">Frontend <br></br> Developer</h3>
-                            </div>
-                            <span className="button button--flex button--small button--link services__button">
-                                View More
-                                <i className="uil uil-arrow-right button__icon"></i>
-                            </span>
-
-                            <div className="services__modal">
-                                <div className="services__modal-content">
-                                    <h4 className="services__modal-title">Frontend <br></br> Developer</h4>
-                                    <i className="uil uil-times services__modal-close"></i>
-
-                                    <ul className="services__modal-services grid">
-                                        <li className="services__modal-service">
-                                            <i className="uil uil-check-circle services__modal-icon"></i>
-                                            <p>I develop the user interface.</p>
-                                        </li>
-                                        <li className="services__modal-service">
-                                            <i className="uil uil-check-circle services__modal-icon"></i>
-                                            <p>Web page development.</p>
-                                        </li>
-                                        <li className="services__modal-service">
-                                            <i className="uil uil-check-circle services__modal-icon"></i>
-                                            <p>I create ux element interactions.</p>
-                                        </li>
-                                        <li className="services__modal-service">
-                                            <i className="uil uil-check-circle services__modal-icon"></i>
-                                            <p>I position your company.</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="services__content">
-                            <div>
-                                <i className="uil uil-pen services__icon"></i>
-                                <h3 className="services__title">Branding <br></br> Designer</h3>
-                            </div>
-                            <span className="button button--flex button--small button--link services__button">
-                                View More
-                                <i className="uil uil-arrow-right button__icon"></i>
-                            </span>
-
-                            <div className="services__modal">
-                                <div className="services__modal-content">
-                                    <h4 className="services__modal-title">Branding <br></br> Designer</h4>
-                                    <i className="uil uil-times services__modal-close"></i>
-
-                                    <ul className="services__modal-services grid">
-                                        <li className="services__modal-service">
-                                            <i className="uil uil-check-circle services__modal-icon"></i>
-                                            <p>I develop the user interface.</p>
-                                        </li>
-                                        <li className="services__modal-service">
-                                            <i className="uil uil-check-circle services__modal-icon"></i>
-                                            <p>Web page development.</p>
-                                        </li>
-                                        <li className="services__modal-service">
-                                            <i className="uil uil-check-circle services__modal-icon"></i>
-                                            <p>I create ux element interactions.</p>
-                                        </li>
-                                        <li className="services__modal-service">
-                                            <i className="uil uil-check-circle services__modal-icon"></i>
-                                            <p>I position your company.</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
 
                 {/* <Projects userDetails={userDetails} /> */}
                 <section className="portfolio section" id="portfolio">
@@ -845,88 +606,7 @@ const Portfolio = () => {
                     </div>
                 </section>
 
-                <section className="testimonial section">
-                    <div className="section__title">Testimonial</div>
-                    <span className="section__subtitle">My client saying</span>
 
-                    <div className="testimonial__container container swiper-container">
-                        <div className="swiper-wrapper">
-
-                            <div className="testimonial__content swiper-slide">
-                                <div className="testimonial__data">
-                                    <div className="testimonial__header">
-                                        <img src="assets/img/testimonial1.jpg" alt="" className="testimonial__img" />
-                                        <div>
-                                            <h3 className="testimonial__name">Sara Smith</h3>
-                                            <span className="testimonial__client">Client</span>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <i className="uil uil-star .testimonial__icon-star"></i>
-                                        <i className="uil uil-star .testimonial__icon-star"></i>
-                                        <i className="uil uil-star .testimonial__icon-star"></i>
-                                        <i className="uil uil-star .testimonial__icon-star"></i>
-                                        <i className="uil uil-star .testimonial__icon-star"></i>
-                                    </div>
-                                </div>
-
-                                <p className="testimonial__description">
-                                    I get a good impression, I carry out my project with all the possible quality
-                                    and attention and support 24 hours a day.
-                                </p>
-                            </div>
-
-                            <div className="testimonial__content swiper-slide">
-                                <div className="testimonial__data">
-                                    <div className="testimonial__header">
-                                        <img src="assets/img/testimonial2.jpg" alt="" className="testimonial__img" />
-                                        <div>
-                                            <h3 className="testimonial__name">Matt Robinson</h3>
-                                            <span className="testimonial__client">Client</span>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <i className="uil uil-star .testimonial__icon-star"></i>
-                                        <i className="uil uil-star .testimonial__icon-star"></i>
-                                        <i className="uil uil-star .testimonial__icon-star"></i>
-                                        <i className="uil uil-star .testimonial__icon-star"></i>
-                                        <i className="uil uil-star .testimonial__icon-star"></i>
-                                    </div>
-                                </div>
-
-                                <p className="testimonial__description">
-                                    I get a good impression, I carry out my project with all the possible quality
-                                    and attention and support 24 hours a day.
-                                </p>
-                            </div>
-
-                            <div className="testimonial__content swiper-slide">
-                                <div className="testimonial__data">
-                                    <div className="testimonial__header">
-                                        <img src="assets/img/testimonial3.jpg" alt="" className="testimonial__img" />
-                                        <div>
-                                            <h3 className="testimonial__name">Raul Harris</h3>
-                                            <span className="testimonial__client">Client</span>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <i className="uil uil-star .testimonial__icon-star"></i>
-                                        <i className="uil uil-star .testimonial__icon-star"></i>
-                                        <i className="uil uil-star .testimonial__icon-star"></i>
-                                        <i className="uil uil-star .testimonial__icon-star"></i>
-                                        <i className="uil uil-star .testimonial__icon-star"></i>
-                                    </div>
-                                </div>
-
-                                <p className="testimonial__description">
-                                    I get a good impression, I carry out my project with all the possible quality
-                                    and attention and support 24 hours a day.
-                                </p>
-                            </div>
-                        </div>
-                        <div className="swiper-pagination swiper-pagination-testimonial"></div>
-                    </div>
-                </section>
 
                 <section className="contact section" id="contact">
                     <div className="section__title">Contact Me</div>
@@ -1026,7 +706,7 @@ const Portfolio = () => {
                         </div>
                     </div>
                 </footer>
-            </main>
+            </main >
 
 
 
