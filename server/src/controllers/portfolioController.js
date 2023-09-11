@@ -286,3 +286,80 @@ export const deleteskilldata = async (req, res) => {
 
     }
 }
+
+// ==================contact-===========================
+
+export const sendMsg = async (req, res) => {
+    try {
+        const { user } = req.params;
+        const newMsg = req.body.input;
+
+        // Log the "newMsg" data
+        console.log("Received Msg Data:", newMsg);
+
+        const options = { new: true, useFindAndModify: false };
+        const updatedData = await ProfileModel.findOneAndUpdate(
+            { "username": user },
+            { $push: { messages: newMsg } },
+            options
+        );
+
+        if (!updatedData) {
+            return res.status(404).send("Profile not found");
+        }
+
+        return res.status(200).send("Msg created successfully");
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send("Internal Server Error");
+    }
+}
+
+
+export const deleteMsg = async (req, res) => {
+    try {
+        const { user, index } = req.params;
+        console.log(user, index)
+        const deleteData = await ProfileModel.findOneAndUpdate(
+            { "username": user },
+            { $unset: { [`messages.${index}`]: 1 } }
+        );
+
+        if (!deleteData) {
+            return res.status(404).send("Profile not found");
+        }
+
+        await ProfileModel.findOneAndUpdate(
+            { "username": user },
+            { $pull: { "messages": null } },
+            { new: true }
+        );
+
+        return res.status(200).send("Profile Deleted Successfully");
+    } catch (error) {
+        return res.status(500).send("Couldn't Delete");
+
+    }
+}
+export const getmsg = async (req, res) => {
+    try {
+        const { user } = req.params;
+
+        // Fetch the user's profile document.
+        const userProfile = await ProfileModel.findOne({ "username": user });
+
+        // Check if the user's profile exists.
+        if (!userProfile) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Access the messages array within the user's profile.
+        const messages = userProfile.messages;
+
+        // Send the messages array as a JSON response.
+        res.status(200).json(messages);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Server error');
+    }
+}

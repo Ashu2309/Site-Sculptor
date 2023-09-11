@@ -288,11 +288,40 @@ const UserState = (props) => {
         }
     }
 
-
+    // =============contact=============
+    const saveContactDetails = async (input) => {
+        console.log(input)
+        try {
+            const username = localStorage.getItem("username")
+            const response = await axios.post(`profile/sendMsg/${username}`, { input })
+            return response;
+        } catch (error) {
+            return error;
+        }
+    }
+    const deleteContactDetails = async (index) => {
+        console.log(index)
+        try {
+            const username = localStorage.getItem("username")
+            const response = await axios.delete(`profile/deleteMsg/${username}/${index}`)
+            return response;
+        } catch (error) {
+            return error;
+        }
+    }
+    const getMsg = async () => {
+        try {
+            const username = localStorage.getItem("username")
+            const response = await axios.get(`profile/getmsg/${username}`)
+            return response;
+        } catch (error) {
+            return error;
+        }
+    }
     return (
         <>
             <UserContext.Provider
-                value={{ state, registerUser, verifyPassword, updateUser, generateOTP, verifyOTP, resetPassword, username, setUsername, saveUserDetails, getUserDetails, updateUserDetails, saveExpDetails, deleteExpDetails, updateExpDetails, saveProjDetails, updateProjDetails, deleteProjDetails, saveSkillDetails, updateSkillDetails, deleteSkillDetails }}
+                value={{ state, registerUser, verifyPassword, updateUser, generateOTP, verifyOTP, resetPassword, username, setUsername, saveUserDetails, getUserDetails, updateUserDetails, saveExpDetails, deleteExpDetails, updateExpDetails, saveProjDetails, updateProjDetails, deleteProjDetails, saveSkillDetails, updateSkillDetails, deleteSkillDetails, saveContactDetails, deleteContactDetails, getMsg }}
             >{props.children}</UserContext.Provider>
         </>
     )

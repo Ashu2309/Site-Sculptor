@@ -43,4 +43,10 @@ router.route('/setskilldata/:user').post(profileController.setskilldata);
 router.route('/updateskilldata/:user').put(profileController.updateskilldata);
 router.route('/deleteskilldata/:user/:index').delete(profileController.deleteskilldata);
 
+router.route('/sendMsg/:user').post(profileController.sendMsg); // send the message
+router.route('/deleteMsg/:user/:index').delete(profileController.deleteMsg); // delete the message
+router.route('/getmsg/:user').get(profileController.getmsg);
+
+
+
 export default router;

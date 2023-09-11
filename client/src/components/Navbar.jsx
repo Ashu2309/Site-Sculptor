@@ -34,6 +34,11 @@ const Navbar = () => {
                             </NavLink>
                         </button>
                         <button className="openNav">
+                            <NavLink to={`/messages/${param}`} className="nav-link">
+                                <i class="fa-solid fa-envelope"></i>
+                            </NavLink>
+                        </button>
+                        <button className="openNav">
                             <NavLink to="/create" className="nav-link">
                                 <i class="fa-solid fa-pencil"></i>
                             </NavLink>

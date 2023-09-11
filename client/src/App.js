@@ -17,6 +17,7 @@ import Portfolio from './components/portfolio/Portfolio.jsx';
 
 /** auth middleware */
 import { AuthorizeUser } from './components/auth'
+import Messages from './components/portfolio/portfolioHelper/Messages';
 
 /** root routes */
 const router = createBrowserRouter([
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
     {
         path: '/portfolio/:user',
         element: <Portfolio />
+    },
+    {
+        path: '/messages/:user',
+        element: <Messages />
     }
 ])
 

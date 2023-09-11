@@ -90,8 +90,19 @@ export const ProfileSchema = new mongoose.Schema({
     links: [{
         linkName: { type: String },
         linkUrl: { type: String, required: true }
-    }]
-
+    }],
+    messages: [
+        {
+            name: { type: String, required: true },       // The sender's name or ID
+            email: { type: String, required: true },    // The recipient's name or ID
+            subject: { type: String, required: true },      // The subject of the message
+            message: { type: String, required: true },      // The content or body of the message
+            timestamp: {
+                type: Date,
+                default: Date.now
+            }
+        }
+    ]
 });
 
 export default mongoose.model.Profiles || mongoose.model('Profile', ProfileSchema);

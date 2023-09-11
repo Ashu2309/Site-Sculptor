@@ -9,6 +9,8 @@ import 'swiper/swiper.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 import 'swiper/components/navigation/navigation.min.css';
 import SwiperCore, { Pagination, Navigation, Autoplay } from 'swiper/core';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 SwiperCore.use([Pagination, Navigation, Autoplay]);
 
 const Portfolio = () => {
@@ -16,7 +18,7 @@ const Portfolio = () => {
     const [selectedProject, setSelectedProject] = useState(null);
 
     const openModal = (projectIndex) => {
-        console.log(projectIndex)
+        // console.log(projectIndex)
         setSelectedProject(projectIndex);
         setModalOpen(true);
     };
@@ -28,10 +30,16 @@ const Portfolio = () => {
 
 
     const [userDetails, setUserDetails] = useState([])
-    const { getUserDetails } = useContext(UserContext)
+    const { getUserDetails, saveContactDetails } = useContext(UserContext)
+    const [input, setinput] = useState({
+        name: "John Doe",
+        email: "johndoe@example.com",
+        subject: "Regarding Your Portfolio",
+        message: "I am interested in collaborating with you on a project. Can we discuss further?"
+    });
     const username = useParams();
     localStorage.setItem("param", username.user)
-    console.log(username.user)
+    // console.log(username.user)
 
     const getdata = async () => {
 
@@ -47,7 +55,21 @@ const Portfolio = () => {
     }
     useEffect(() => {
         getdata();
+        AOS.init({
+            offset: 350,
+            duration: 1000,
+            delay: 200
+        });
+
     }, [])
+
+    //sending message
+    const sendMessage = async (e) => {
+        e.preventDefault();
+        const response = await saveContactDetails(input);
+        getdata()
+    }
+
     /*==================== MENU SHOW Y HIDDEN ====================*/
     const navMenu = document.getElementById("nav-menu");
     const navToggle = document.getElementById("nav-toggle");
@@ -252,7 +274,7 @@ const Portfolio = () => {
     //     localStorage.setItem("selected-theme", getCurrentTheme());
     //     localStorage.setItem("selected-icon", getCurrentIcon());
     // });
-    console.log(userDetails)
+    // console.log(userDetails)
     return (
         <>
             <Navbar />
@@ -350,8 +372,8 @@ const Portfolio = () => {
                     </div>
                 </section>
 
-                <section className="about section" id="about">
-                    <h2 className="section__title">About Me</h2>
+                <section className="about section" id="about" data-aos="fade-up">
+                    <h2 className="section__title" data-aos="slide-right">About Me</h2>
                     <span className="section__subtitle">My introduction</span>
                     <div className='bg-light shadow'>
 
@@ -389,8 +411,8 @@ const Portfolio = () => {
 
                 </section>
 
-                <section className="skills section" id="skills">
-                    <h2 className="section__title">Skills</h2>
+                {/* <section className="skills section" id="skills" data-aos="fade-up">
+                    <h2 className="section__title" data-aos="slide-right">Skills</h2>
                     <span className="section__subtitle">My technical level</span>
                     <div className='bg-light p-5 shadow'>
 
@@ -435,10 +457,10 @@ const Portfolio = () => {
 
                         </div>
                     </div>
-                </section>
+                </section> */}
 
-                <section className="qualification section">
-                    <h2 className="section__title">Qualification</h2>
+                <section className="qualification section" data-aos="fade-up">
+                    <h2 className="section__title" data-aos="slide-right">Qualification</h2>
                     <span className="section__subtitle">My persolan journey</span>
 
                     <div className="qualification__container container">
@@ -541,8 +563,8 @@ const Portfolio = () => {
 
 
                 {/* <Projects userDetails={userDetails} /> */}
-                <section className="portfolio section" id="portfolio">
-                    <h2 className="section__title">Portfolio</h2>
+                <section className="portfolio section" id="portfolio" data-aos="fade-up" data-aos-offset="400">
+                    <h2 className="section__title" data-aos="slide-right">Portfolio</h2>
                     <span className="section__subtitle">Most recent work</span>
 
                     <div className="portfolio__container container-fluid text-center">
@@ -556,7 +578,7 @@ const Portfolio = () => {
                                         loop={true}
                                         autoplay={{ delay: 3000 }}
                                         navigation={{ prevEl: '.swiper-button-prev', nextEl: '.swiper-button-next' }}
-                                        onSlideChange={() => console.log('slide change')}
+                                    // onSlideChange={() => console.log('slide change')}
                                     >
                                         {userDetails.projects.map((elem, ind) => (
                                             <SwiperSlide key={ind}>
@@ -588,7 +610,7 @@ const Portfolio = () => {
 
 
 
-                <section className="project section">
+                <section className="project section" data-aos="fade-left" data-aos-offset="800">
                     <div className="project__bg">
                         <div className="project__container container grid">
                             <div className="project__data">
@@ -608,11 +630,11 @@ const Portfolio = () => {
 
 
 
-                <section className="contact section" id="contact">
-                    <div className="section__title">Contact Me</div>
+                <section className="contact section" id="contact" data-aos="fade-up" data-aos-offset="600">
+                    <div className="section__title" data-aos="slide-right" data-aos-offset="600">Contact Me</div>
                     <span className="section__subtitle">Get in touch</span>
 
-                    <div className="contact__container container grid bg-light p-5 shadow">
+                    <div className="contact__container m-5 grid bg-light p-5 shadow">
                         <div>
                             <div className="contact__information">
                                 <i className="uil uil-phone contact__icon"></i>
@@ -644,33 +666,32 @@ const Portfolio = () => {
                             <div className="contact__inputs grid">
                                 <div className="contact__content">
                                     <label for="" className="contact__label">Name</label>
-                                    <input type="text" className="contact__input" />
+                                    <input type="text" className="contact__input" value={input.name} onChange={(e) => setinput({ ...input, "name": e.target.value })} />
                                 </div>
                                 <div className="contact__content">
                                     <label for="" className="contact__label">Email</label>
-                                    <input type="email" className="contact__input" />
+                                    <input type="email" className="contact__input" value={input.email} onChange={(e) => setinput({ ...input, "email": e.target.value })} />
                                 </div>
                             </div>
                             <div className="contact__content">
-                                <label for="" className="contact__label">Project</label>
-                                <input type="text" className="contact__input" />
+                                <label for="" className="contact__label">Subject</label>
+                                <input type="text" className="contact__input" value={input.subject} onChange={(e) => setinput({ ...input, "subject": e.target.value })} />
                             </div>
                             <div className="contact__content">
                                 <label for="" className="contact__label">Message</label>
-                                <textarea name="" id="" cols="0" rows="7" className="contact__input"></textarea>
-                                <input type="text" className="contact__input" />
+                                <textarea name="" id="" cols="0" rows="7" className="contact__input" value={input.message} onChange={(e) => setinput({ ...input, "message": e.target.value })}></textarea>
                             </div>
 
                             <div>
-                                <a href="#" className="button button--flex">
+                                <button className="button button--flex" onClick={sendMessage}>
                                     Send Message
                                     <i className="uil uil-message button__icon"></i>
-                                </a>
+                                </button>
                             </div>
                         </form>
                     </div>
                 </section>
-                <footer className="footer">
+                <footer className="footer" data-aos="fade-up" data-aos="zoom-in" data-aos-offset="500">
                     <div className="footer__bg">
                         <div className="footer__container container grid">
                             <div>

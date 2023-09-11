@@ -135,6 +135,7 @@ input[type="file"] {
   position: fixed;
   bottom: 10px;
   right: 10px;
+  z-index: 9999;
 }
 .navigator button {
   height: 45px;
@@ -162,4 +163,33 @@ input[type="file"] {
 .optionsNav {
   display: flex;
   flex-direction: column;
+}
+
+/* ========messages========= */
+.messages {
+  height: 100vh;
+}
+.left_block {
+  background-color: blueviolet;
+  height: fit-content;
+  color: #fff;
+}
+.right_block {
+  background-color: #fff;
+  margin-left: 20px;
+  position: relative;
+  padding: 10px;
+}
+.right_block::before {
+  content: "";
+  position: absolute;
+  /* height: 10px;
+  width: 10px; */
+  background-color: #000;
+  left: -20px;
+  top: 0px;
+  border-top: 10px solid #fff;
+  border-right: 10px solid #fff;
+  border-bottom: 10px solid #eaf6f6;
+  border-left: 10px solid #eaf6f6;
 }
