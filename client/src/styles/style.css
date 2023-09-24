@@ -169,6 +169,9 @@ img {
   display: grid;
   gap: 1.5rem;
 }
+.grid-two-col {
+  grid-template-columns: repeat(2, 1fr);
+}
 
 .header {
   width: 100%;
@@ -181,7 +184,6 @@ img {
 
 /*==================== NAV ====================*/
 .nav {
-  max-width: 968px;
   height: var(--header-height);
   display: flex;
   justify-content: space-between;
@@ -1124,6 +1126,7 @@ img {
 
   body {
     margin: 0;
+    overflow-x: hidden;
   }
 
   .section {
@@ -1146,8 +1149,12 @@ img {
   }
 
   .nav {
-    height: calc(var(--header-height) + 1.5rem);
+    position: fixed;
+    width: 100vw !important;
+    height: calc(var(--header-height) + 0.5rem);
     column-gap: 1rem;
+    z-index: 9999999;
+    background-color: #eaf6f6;
   }
 
   .nav__icon,

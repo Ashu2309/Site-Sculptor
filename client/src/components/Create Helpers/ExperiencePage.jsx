@@ -127,22 +127,22 @@ const ExperiencePage = () => {
                                     <textarea name='description' value={input.description} onChange={(e) => setinput({ ...input, description: e.target.value })} ></textarea>
                                 </div>
 
-                                <div>
-                                    <input type="submit" value="send message" className="btn" />
+                                <div className='grid grid-two-col'>
+                                    <input type="submit" value="send message" className="update-btn" />
+                                    <input type="button" value="Close" className="cancel-btn" onClick={() => settoggle(false)} />
+
                                 </div>
                             </form>
-
-                            <div>
-                                <input type="button" value="Close" className="btn w-25" onClick={() => settoggle(false)} />
-                            </div>
                         </>
                     }
 
                     {userDetails.map((elem, ind) =>
                         <>
-                            <div className='bg-light border'>
-                                <div><button className='btn' onClick={() => handleUpdate(ind)}>Edit</button>
-                                    <button className='btn' onClick={() => deleteExp(ind)}>Delete</button></div>
+                            <div className='detailsCard'>
+                                <div className='functionDiv'>
+                                    <i className='fa-solid fa-pencil' onClick={() => handleUpdate(ind)}></i>
+                                    <i className='fa-solid fa-trash' onClick={() => deleteExp(ind)}></i>
+                                </div>
                                 <p>{elem.title}</p>
                                 <p>{elem.company}</p>
                                 <p>{elem.companyLocation}</p>
@@ -182,14 +182,12 @@ const ExperiencePage = () => {
                                             <textarea name='description' value={updateInput.description} onChange={(e) => setupdateInput({ ...updateInput, description: e.target.value })} ></textarea>
                                         </div>
 
-                                        <div>
-                                            <input type="button" value="send message" className="btn" onClick={updateDetails} />
+                                        <div className='grid grid-two-col'>
+                                            <input type="button" value="send message" className="update-btn" onClick={updateDetails} />
+                                            <input type="button" value="Close" className="cancel-btn" onClick={() => setmodal(false)} />
+
                                         </div>
                                     </form>
-
-                                    <div>
-                                        <input type="button" value="Close" className="btn w-25" onClick={() => setmodal(false)} />
-                                    </div>
                                 </div>
                             </div>
                         </>

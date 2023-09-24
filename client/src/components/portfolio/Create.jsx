@@ -88,47 +88,53 @@ const Create = () => {
         <>
             <Navbar />
             <Toaster />
-            <SideNav active={active} setActive={setActive} />
-            {username ? (
-                <div className='d-flex justify-content-center align-items-center flex-column fillDetails'>
-                    {active == "Home" &&
-                        <>
-                            <div>
-                                <HomePage />
-                                <button className="bg-info text-light btn" onClick={() => setActive("About")}>Next</button>
-                            </div>
-                        </>
-                    }
-                    {active == "About" &&
-                        <>
-                            <div>
-                                <AboutPage />
-                                <button className="bg-info text-light btn" onClick={() => setActive("Skills")}>Next</button>
-                            </div>
-                        </>
-                    } {active == "Skills" &&
-                        <>
-                            <div>
-                                <SkillsPage />
-                                <button className="bg-info text-light btn" onClick={() => setActive("Project")}>Next</button>
-                            </div>
-                        </>
-                    } {active == "Project" &&
-                        <>
-                            <div>
-                                <ProjectPage />
-                                <button className="bg-info text-light btn" onClick={() => setActive("Experience")}>Next</button>
-                            </div>
-                        </>
-                    } {active == "Experience" &&
-                        <>
-                            <div>
-                                <ExperiencePage />
-                                <button className="bg-info text-light btn" onClick={() => setActive("Contact")}> Save</button>
-                            </div>
-                        </>
-                    }
-                    {/* <div>
+            <div className="container_fluid">
+                <div className="row">
+                    <div className='leftBlockCreate col-lg-3 col-3'>
+                        <SideNav active={active} setActive={setActive} />
+
+                    </div>
+
+                    {username ? (
+                        <div className='fillDetails col-lg-9 col-9'>
+                            {active == "Home" &&
+                                <>
+                                    <div>
+                                        <HomePage />
+                                        <button className="bg-info text-light btn" onClick={() => setActive("About")}>Next</button>
+                                    </div>
+                                </>
+                            }
+                            {active == "About" &&
+                                <>
+                                    <div>
+                                        <AboutPage />
+                                        <button className="bg-info text-light btn" onClick={() => setActive("Skills")}>Next</button>
+                                    </div>
+                                </>
+                            } {active == "Skills" &&
+                                <>
+                                    <div>
+                                        <SkillsPage />
+                                        <button className="bg-info text-light btn" onClick={() => setActive("Project")}>Next</button>
+                                    </div>
+                                </>
+                            } {active == "Project" &&
+                                <>
+                                    <div>
+                                        <ProjectPage />
+                                        <button className="bg-info text-light btn" onClick={() => setActive("Experience")}>Next</button>
+                                    </div>
+                                </>
+                            } {active == "Experience" &&
+                                <>
+                                    <div>
+                                        <ExperiencePage />
+                                        <button className="bg-info text-light btn" onClick={() => setActive("Contact")}> Save</button>
+                                    </div>
+                                </>
+                            }
+                            {/* <div>
                         <h1>lets make it</h1>
                         <h1>Home page</h1>
                         <form onSubmit={saveDetails}>
@@ -170,13 +176,16 @@ const Create = () => {
                             <button type='submit'>SAVE</button>
                         </form>
                     </div> */}
-                </div >)
-                : (
-                    <>
-                        {navigate("/login")}
-                        {toast.error("Login First")}
-                    </>
-                )}
+                        </div >)
+                        : (
+                            <>
+                                {navigate("/login")}
+                                {toast.error("Login First")}
+                            </>
+                        )}
+
+                </div>
+            </div>
 
         </>
     )

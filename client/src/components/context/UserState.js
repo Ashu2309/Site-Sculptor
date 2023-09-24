@@ -292,7 +292,7 @@ const UserState = (props) => {
     const saveContactDetails = async (input) => {
         console.log(input)
         try {
-            const username = localStorage.getItem("username")
+            const username = localStorage.getItem("param")
             const response = await axios.post(`profile/sendMsg/${username}`, { input })
             return response;
         } catch (error) {

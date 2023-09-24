@@ -242,15 +242,13 @@ const ProjectPage = () => {
                                 <div className="tags">
                                     {input.technologiesUsed.map((elem, ind) => (
                                         <>
-                                            <button value={input.technologiesUsed[ind]} className='tag_child' >{input.technologiesUsed[ind]}</button>
-                                            <button className='text-light bg-danger'
-                                                onClick={(e) => deleteTag(e, ind)}>X</button>
+                                            <button value={input.technologiesUsed[ind]} className='tag_child' >{input.technologiesUsed[ind]}  <i className='fa-solid fa-x' onClick={(e) => deleteTag(e, ind)}></i></button>
                                         </>
                                     ))}
                                 </div>
                                 <div >
                                     <input type="text" value={tech} onChange={(e) => setTags(e)} />
-                                    <button onClick={(e) => putTech(e)}>SET</button>
+                                    <button onClick={(e) => putTech(e)} className='setbtn'>SET</button>
                                 </div>
 
 
@@ -261,23 +259,22 @@ const ProjectPage = () => {
                                     <textarea name='technlogiesUsed' value={input.outcomes} onChange={(e) => setinput({ ...input, outcomes: e.target.value })} ></textarea>
                                 </div>
 
-
-
-                                <div>
-                                    <input type="submit" value="send message" className="btn" />
-                                </div>
                             </form>
 
-                            <div>
-                                <input type="button" value="Close" className="btn w-25" onClick={() => settoggle(false)} />
+                            <div className='grid grid-two-col'>
+                                <input type="submit" value="send message" className="update-btn" />
+
+                                <input type="button" value="Close" className="cancel-btn" onClick={() => settoggle(false)} />
                             </div>
                         </>
                     }
                     {userDetails.map((elem, ind) =>
                         <>
-                            <div className='bg-light border'>
-                                <div><button className='btn' onClick={() => handleUpdate(ind)}>Edit</button>
-                                    <button className='btn' onClick={() => deleteExp(ind)}>Delete</button></div>
+                            <div className='detailsCard'>
+                                <div className='functionDiv'>
+                                    <i className='fa-solid fa-pencil' onClick={() => handleUpdate(ind)}></i>
+                                    <i className='fa-solid fa-trash' onClick={() => deleteExp(ind)}></i>
+                                </div>
                                 <p>{elem.title}</p>
                                 <p>{elem.company}</p>
                                 <p>{elem.role}</p>
@@ -304,7 +301,7 @@ const ProjectPage = () => {
                             <div className="main_modal">
                                 <div className='modal_inside'>
                                     <form onSubmit={updateDetails}>
-                                        <div className=" grid grid-two-col">
+                                        <div className=" grid">
                                             <input type="text" name='title' value={updateInput.title} onChange={(e) => setupdateInput({ ...updateInput, title: e.target.value })} placeholder='Job Title' />
                                         </div>
                                         <div className=' grid grid-two-col'>
@@ -324,44 +321,37 @@ const ProjectPage = () => {
                                         <div className="tags">
                                             {updateInput.technologiesUsed.map((elem, ind) => (
                                                 <>
-                                                    <button value={updateInput.technologiesUsed[ind]} className='tag_child' >{updateInput.technologiesUsed[ind]}</button>
-                                                    <button className='text-light bg-danger'
-                                                        onClick={(e) => deletemodalTag(e, ind)}>X</button>
+                                                    <button value={updateInput.technologiesUsed[ind]} className='tag_child' >{updateInput.technologiesUsed[ind]} <i className='fa-solid fa-x' onClick={(e) => deletemodalTag(e, ind)}></i></button>
+
                                                 </>
                                             ))}
 
 
                                         </div>
-                                        <div >
+                                        <div className='d-flex align-items-center'>
                                             <input type="text" value={modaltech} onChange={(e) => setmodalTags(e)} />
-                                            <button onClick={(e) => putmodalTech(e)}>SET</button>
-                                        </div>
-
-
-
-
-
-                                        <div>
-                                            <textarea name='technlogiesUsed' value={updateInput.outcomes} onChange={(e) => setupdateInput({ ...updateInput, outcomes: e.target.value })} ></textarea>
-                                        </div>
-
-                                        <div>
-                                            <input type="submit" value="send message" className="btn" />
+                                            <button onClick={(e) => putmodalTech(e)} className='setbtn'>SET</button>
                                         </div>
                                         <div >
                                             {updateInput.images.map((elem, ind) => (
                                                 <>
                                                     <img src={elem} className='imgProject' />
-                                                    <button className='text-light bg-danger'
-                                                        onClick={(e) => deleteimage(e, ind)}>X</button>
+                                                    <i className='fa-solid fa-x mx-2' onClick={(e) => deleteimage(e, ind)}></i>
                                                 </>
                                             ))}
                                         </div>
-                                    </form>
 
-                                    <div>
-                                        <input type="button" value="Close" className="btn w-25" onClick={() => setmodal(false)} />
-                                    </div>
+                                        <div>
+                                            <textarea name='technlogiesUsed' value={updateInput.outcomes} onChange={(e) => setupdateInput({ ...updateInput, outcomes: e.target.value })} ></textarea>
+                                        </div>
+
+                                        <div className='grid grid-two-col'>
+                                            <input type="submit" value="send message" className="update-btn" />
+                                            <input type="button" value="Close" className="cancel-btn" onClick={() => setmodal(false)} />
+
+                                        </div>
+
+                                    </form>
                                 </div>
                             </div>
                         </>

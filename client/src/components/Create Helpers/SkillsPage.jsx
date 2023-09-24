@@ -154,13 +154,9 @@ const SkillsPage = () => {
                             <form onSubmit={saveDetails}>
                                 <div className=" grid grid-two-col">
                                     <input type="text" name='title' value={input.title} onChange={(e) => setinput({ ...input, title: e.target.value })} placeholder='Job Title' />
-                                </div>
-                                <div>
                                     <input type="text" name="experience" placeholder="experience" value={input.experience} onChange={(e) => setinput({ ...input, experience: e.target.value })} />
+
                                 </div>
-
-
-
                                 {/* Add more input fields for skills */}
                                 {input.skillsname.map((elem, ind) => (
                                     <>
@@ -171,29 +167,29 @@ const SkillsPage = () => {
                                             onClick={(e) => deleteTag(e, ind)}>X</button>
                                     </>
                                 ))}
-                                <div>
+                                <div className='grid grid-two-col'>
                                     <input type="text" value={tech.name} onChange={setName} placeholder="Skill Name" />
                                     <input type="text" value={tech.percentage} onChange={setPercentage} placeholder="Skill Percentage" />
-                                    <button onClick={putTech}>SET</button>
+                                    <button onClick={putTech} className='setbtn'>SET</button>
                                 </div>
 
 
-                                <div>
-                                    <input type="submit" value="send message" className="btn" />
+                                <div className='grid grid-two-col'>
+                                    <input type="submit" value="send message" className="update-btn" />
+                                    <input type="button" value="Close" className="cancel-btn" onClick={() => settoggle(false)} />
+
                                 </div>
                             </form>
-
-                            <div>
-                                <input type="button" value="Close" className="btn w-25" onClick={() => settoggle(false)} />
-                            </div>
                         </>
                     }
 
                     {userDetails.map((elem, ind) =>
                         <>
-                            <div className='bg-light border'>
-                                <div><button className='btn' onClick={() => handleUpdate(ind)}>Edit</button>
-                                    <button className='btn' onClick={() => deleteSkills(ind)}>Delete</button></div>
+                            <div className='detailsCard'>
+                                <div className='functionDiv'>
+                                    <i className='fa-solid fa-pencil' onClick={() => handleUpdate(ind)}></i>
+                                    <i className='fa-solid fa-trash' onClick={() => deleteSkills(ind)}></i>
+                                </div>
                                 <h4>{elem.title}</h4>
                                 {elem.skillsname.map((element, ind) =>
                                     <>
@@ -243,14 +239,13 @@ const SkillsPage = () => {
                                         ))}
 
 
-                                        <div>
-                                            <input type="button" value="send message" className="btn" onClick={updateDetails} />
+                                        <div className='grid grid-two-col'>
+                                            <input type="button" value="send message" className="update-btn" onClick={updateDetails} />
+
+                                            <input type="button" value="Close" className="cancel-btn" onClick={() => setmodal(false)} />
                                         </div>
                                     </form>
 
-                                    <div>
-                                        <input type="button" value="Close" className="btn w-25" onClick={() => setmodal(false)} />
-                                    </div>
                                 </div>
                             </div>
                         </>

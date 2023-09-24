@@ -16,6 +16,7 @@ SwiperCore.use([Pagination, Navigation, Autoplay]);
 const Portfolio = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedProject, setSelectedProject] = useState(null);
+    const [openSkill, setOpenSkill] = useState(0);
 
     const openModal = (projectIndex) => {
         // console.log(projectIndex)
@@ -28,7 +29,7 @@ const Portfolio = () => {
         setSelectedProject(null);
     };
 
-
+    console.log(openSkill)
     const [userDetails, setUserDetails] = useState([])
     const { getUserDetails, saveContactDetails } = useContext(UserContext)
     const [input, setinput] = useState({
@@ -71,6 +72,24 @@ const Portfolio = () => {
     }
 
     /*==================== MENU SHOW Y HIDDEN ====================*/
+    document.addEventListener("DOMContentLoaded", function () {
+        const navbarMi = document.querySelector(".nav");
+
+        window.addEventListener("scroll", function () {
+            if (window.scrollY > 250) {
+                navbarMi.classList.add("bg-light");
+                navbarMi.classList.add("shadow");
+
+            } else {
+                navbarMi.classList.remove("bg-light");
+                navbarMi.classList.remove("shadow");
+
+            }
+        });
+    });
+
+
+
     const navMenu = document.getElementById("nav-menu");
     const navToggle = document.getElementById("nav-toggle");
     const navClose = document.getElementById("nav-close");
@@ -117,9 +136,9 @@ const Portfolio = () => {
         }
     }
 
-    skillsHeader.forEach((el) => {
-        el.addEventListener("click", toggleSkills);
-    });
+    // skillsHeader.forEach((el) => {
+    //     el.addEventListener("click", toggleSkills);
+    // });
 
     /*==================== QUALIFICATION TABS ====================*/
     const tabs = document.querySelectorAll("[data-target]");
@@ -278,7 +297,7 @@ const Portfolio = () => {
     return (
         <>
             <Navbar />
-            <nav className="nav container">
+            <nav className="nav px-5">
                 <a href="#" className="nav__logo">{userDetails.name}</a>
 
                 <div className="nav__menu" id="nav-menu">
@@ -299,13 +318,8 @@ const Portfolio = () => {
                             </a>
                         </li>
                         <li className="nav__item">
-                            <a href="#services" className="nav__link">
-                                <i className="uil nav__icon uil-briefcase-alt"></i> Services
-                            </a>
-                        </li>
-                        <li className="nav__item">
                             <a href="#portfolio" className="nav__link">
-                                <i className="uil nav__icon uil-scenery"></i> Portfolio
+                                <i className="uil nav__icon uil-scenery"></i> Projects
                             </a>
                         </li>
                         <li className="nav__item">
@@ -373,7 +387,7 @@ const Portfolio = () => {
                 </section>
 
                 <section className="about section" id="about" data-aos="fade-up">
-                    <h2 className="section__title" data-aos="slide-right">About Me</h2>
+                    <h2 className="section__title" data-aos="fade-right">About Me</h2>
                     <span className="section__subtitle">My introduction</span>
                     <div className='bg-light shadow'>
 
@@ -411,8 +425,8 @@ const Portfolio = () => {
 
                 </section>
 
-                {/* <section className="skills section" id="skills" data-aos="fade-up">
-                    <h2 className="section__title" data-aos="slide-right">Skills</h2>
+                <section className="skills section" id="skills" data-aos="fade-up">
+                    <h2 className="section__title" data-aos="fade-right">Skills</h2>
                     <span className="section__subtitle">My technical level</span>
                     <div className='bg-light p-5 shadow'>
 
@@ -422,32 +436,35 @@ const Portfolio = () => {
                                 userDetails.skills.map((elem, ind) =>
 
                                     <div className="skills__content skills__open">
-                                        <div className="skills__header">
-                                            <i className="uil uil-brackets-curly skills__icon"></i>
+                                        <div className="skills__header" onClick={() => setOpenSkill(openSkill === ind ? null : ind)}
+                                        >
+                                            <i className="uil uil-brackets-curly skills__icon" ></i>
 
                                             <div>
                                                 <h1 className="skills__title">{elem.title}</h1>
                                                 <span className="skills__subtitle">{elem.experience}</span>
                                             </div>
-
-                                            <i className="uil uil-angle-down skills__arrow" ></i>
+                                            {openSkill === ind ?
+                                                <i className="uil uil-angle-down skills__arrow" ></i>
+                                                : <i className="uil uil-angle-up skills__arrow" ></i>}
                                         </div>
+                                        {openSkill === ind ?
+                                            <div className="skills__list grid">
+                                                {elem.skillsname.map((element, i) => (
+                                                    <div className="skills__data" key={i}>
+                                                        <div className="skills__titles">
+                                                            <h3 className="skills_name">{element.name}</h3>
+                                                            <span className="skills__number">{element.percentage}%</span>
+                                                        </div>
+                                                        <div className="skills__bar">
+                                                            <span className="skills__percentage" style={{ width: `${element.percentage}%` }}></span>
 
-                                        <div className="skills__list grid">
-                                            {elem.skillsname.map((element, i) => (
-                                                <div className="skills__data">
-                                                    <div className="skills__titles">
-                                                        <h3 className="skills_name">{element.name}</h3>
-                                                        <span className="skills__number">{element.percentage}%</span>
+                                                        </div>
                                                     </div>
-                                                    <div className="skills__bar">
-                                                        <span className="skills__percentage" style={{ width: `${element.percentage}%` }}></span>
 
-                                                    </div>
-                                                </div>
-
-                                            ))}
-                                        </div>
+                                                ))}
+                                            </div>
+                                            : null}
                                     </div>
                                 )
 
@@ -457,10 +474,10 @@ const Portfolio = () => {
 
                         </div>
                     </div>
-                </section> */}
+                </section>
 
-                <section className="qualification section" data-aos="fade-up">
-                    <h2 className="section__title" data-aos="slide-right">Qualification</h2>
+                <section className="qualification section">
+                    <h2 className="section__title">Qualification</h2>
                     <span className="section__subtitle">My persolan journey</span>
 
                     <div className="qualification__container container">
@@ -564,7 +581,7 @@ const Portfolio = () => {
 
                 {/* <Projects userDetails={userDetails} /> */}
                 <section className="portfolio section" id="portfolio" data-aos="fade-up" data-aos-offset="400">
-                    <h2 className="section__title" data-aos="slide-right">Portfolio</h2>
+                    <h2 className="section__title" data-aos="fade-right">Projects</h2>
                     <span className="section__subtitle">Most recent work</span>
 
                     <div className="portfolio__container container-fluid text-center">
@@ -631,7 +648,7 @@ const Portfolio = () => {
 
 
                 <section className="contact section" id="contact" data-aos="fade-up" data-aos-offset="600">
-                    <div className="section__title" data-aos="slide-right" data-aos-offset="600">Contact Me</div>
+                    <div className="section__title" data-aos="fade-right" data-aos-offset="600">Contact Me</div>
                     <span className="section__subtitle">Get in touch</span>
 
                     <div className="contact__container m-5 grid bg-light p-5 shadow">
@@ -691,7 +708,7 @@ const Portfolio = () => {
                         </form>
                     </div>
                 </section>
-                <footer className="footer" data-aos="fade-up" data-aos="zoom-in" data-aos-offset="500">
+                <footer className="footer" data-aos="fade-up" data-aos="fade-in" data-aos-offset="500">
                     <div className="footer__bg">
                         <div className="footer__container container grid">
                             <div>

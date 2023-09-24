@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 .main {
   height: 100vh;
 }
@@ -27,7 +28,7 @@ input[type="file"] {
 .side_nav {
   position: fixed;
   height: 100vh;
-  width: 30%;
+  /* width: 30%; */
   background-color: #3e64ff;
   color: #fff;
 }
@@ -74,9 +75,6 @@ input[type="file"] {
   width: 0.2rem;
   margin-left: 1rem;
 }
-.fillDetails {
-  margin-left: 30%;
-}
 
 /* ==================experince======================= */
 .main_modal {
@@ -90,21 +88,59 @@ input[type="file"] {
   justify-content: center;
 }
 .modal_inside {
-  background-color: #212529;
+  background-color: #e2edfb;
+  box-shadow: 0 0 24px #989696;
   padding: 2rem;
   overflow-y: scroll;
-  height: 40rem;
+  height: 30rem;
 }
 
 .tag_child {
-  width: 100px !important;
-  background-color: #212529;
+  background-color: #a2a2a2;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  padding: 10px;
   color: #fff;
+  margin-right: 7px;
+}
+.update-btn {
+  background-color: #3e64ff;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 20px;
+  color: #fff !important;
+  margin-left: 7px;
+}
+.cancel-btn {
+  background-color: rgb(213, 212, 212);
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 20px;
+  color: #000 !important;
+  margin-left: 7px;
+}
+
+.setbtn {
+  width: 100px !important;
+  background-color: #3e64ff;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 20px;
+  color: #fff;
+  margin-left: 7px;
 }
 
 .imgProject {
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
+  margin-left: 10px;
 }
 
 .userImage_main {
@@ -192,4 +228,62 @@ input[type="file"] {
   border-right: 10px solid #fff;
   border-bottom: 10px solid #eaf6f6;
   border-left: 10px solid #eaf6f6;
+}
+
+/* create page */
+.section-contact {
+  width: 100%;
+  padding: 30px 150px;
+}
+.section-contact input {
+  width: 100%;
+  height: 50px;
+  padding: 7px;
+  border-radius: 14px;
+  font-size: 20px;
+  margin: 10px 0;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  color: #3e3e3e;
+  outline: none;
+  box-shadow: 0 0 3px #a2a2a2;
+}
+.section-contact input:focus {
+  border: 1px solid #3e64ff;
+}
+.section-contact textarea {
+  width: 100%;
+  height: 200px;
+  padding: 7px;
+  border-radius: 14px;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  margin: 10px 0;
+  border: none;
+  outline: none;
+  box-shadow: 0 0 3px #a2a2a2;
+  color: #3e3e3e;
+}
+.section-contact textarea:focus {
+  border: 1px solid #3e64ff;
+}
+
+.detailsCard {
+  padding: 30px;
+  background-color: #fff;
+  margin-bottom: 20px;
+  box-shadow: 4px 4px 10px #e3e3e3;
+  position: relative;
+}
+.functionDiv {
+  position: absolute;
+  right: 20px;
+  font-size: 30px;
+}
+.functionDiv i:nth-child(1) {
+  color: rgb(16, 172, 16);
+  margin: 15px;
+}
+.functionDiv i:nth-child(2) {
+  color: crimson;
 }
