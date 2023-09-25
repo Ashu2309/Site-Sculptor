@@ -15,13 +15,13 @@ const SkillsPage = () => {
     const [modal, setmodal] = useState(false)
     const [indexUpadte, setindexUpdate] = useState()
     const [tech, setTech] = useState({ name: "", percentage: "" })
+    const [updatetech, setupdateTech] = useState({ name: "", percentage: "" })
 
 
     const [input, setinput] = useState({
-        title: "Web Developer",
-        experience: "3 years",
+        title: "",
+        experience: "",
         skillsname: [
-            { name: "", percentage: "" }
         ],
     });
 
@@ -29,9 +29,6 @@ const SkillsPage = () => {
         title: "Graphic Designer",
         experience: "5 years",
         skillsname: [
-            { name: "Adobe Photoshop", percentage: "95" },
-            { name: "Illustrator", percentage: "90" },
-            { name: "InDesign", percentage: "80" }
         ],
     });
     const getdata = async () => {
@@ -98,7 +95,14 @@ const SkillsPage = () => {
         updatedInput.skillsname[skillIndex][field] = value;
         setinput(updatedInput);
     };
-
+    const deleteUpdateTag = (index) => {
+        const updatedSkills = [...updateInput.skillsname];
+        updatedSkills.splice(index, 1);
+        setupdateInput({
+            ...updateInput,
+            skillsname: updatedSkills
+        });
+    }
 
     // console.log(userDetails)
     const deleteTag = (index) => {
@@ -117,6 +121,13 @@ const SkillsPage = () => {
     const setPercentage = (e) => {
         setTech({ ...tech, percentage: e.target.value });
     }
+    const setupdateName = (e) => {
+        setupdateTech({ ...updatetech, name: e.target.value });
+    }
+
+    const setupdatePercentage = (e) => {
+        setupdateTech({ ...updatetech, percentage: e.target.value });
+    }
 
     const putTech = (e) => {
         e.preventDefault();
@@ -128,6 +139,17 @@ const SkillsPage = () => {
             setTech({ name: "", percentage: "" });
         }
     }
+    const putupdateTech = (e) => {
+        e.preventDefault();
+        if (updatetech.name !== "" && updatetech.percentage !== "") {
+            setupdateInput({
+                ...updateInput,
+                skillsname: [...updateInput.skillsname, updatetech]
+            });
+            setupdateTech({ name: "", percentage: "" });
+        }
+    }
+    console.log(updatetech)
     // const setmodalTags = (e) => {
     //     e.preventDefault();
     //     setmodalTech(e.target.value)
@@ -137,6 +159,7 @@ const SkillsPage = () => {
     //     e.preventDefault();
     //     setupdateInput({ ...updateInput, technologiesUsed: [...updateInput.technologiesUsed, modaltech] })
     // };
+    console.log(input)
     return (
         <div>
             <section className="section section-contact ">
@@ -158,15 +181,19 @@ const SkillsPage = () => {
 
                                 </div>
                                 {/* Add more input fields for skills */}
-                                {input.skillsname.map((elem, ind) => (
-                                    <>
-                                        <button value={input.skillsname[ind]} className='tag_child' >{input.skillsname[ind].name} - </button>
-                                        <button value={input.skillsname[ind]} className='tag_child' >{input.skillsname[ind].percentage}</button>
+                                {input.skillsname.length > 0 && (
+                                    input.skillsname.map((elem, ind) => (
+                                        <div key={ind}>
+                                            <button value={input.skillsname[ind]} className='tag_child'>
+                                                {input.skillsname[ind].name} -  {input.skillsname[ind].percentage}
+                                                <i className='fa-solid fa-x' onClick={(e) => deleteTag(e, ind)} ></i>
+                                            </button>
+                                        </div>
+                                    ))
+                                )}
 
-                                        <button className='text-light bg-danger'
-                                            onClick={(e) => deleteTag(e, ind)}>X</button>
-                                    </>
-                                ))}
+
+
                                 <div className='grid grid-two-col'>
                                     <input type="text" value={tech.name} onChange={setName} placeholder="Skill Name" />
                                     <input type="text" value={tech.percentage} onChange={setPercentage} placeholder="Skill Percentage" />
@@ -215,28 +242,24 @@ const SkillsPage = () => {
                                         </div>
 
                                         {/* Add more input fields for skills */}
-                                        {input.skillsname.map((skill, skillIndex) => (
-                                            <div key={skillIndex} className="grid grid-two-col">
-                                                <input
-                                                    type="text"
-                                                    name={`name_${skillIndex}`}
-                                                    value={skill.name}
-                                                    onChange={(e) =>
-                                                        handleSkillsChange(e, skillIndex, "name")
-                                                    }
-                                                    placeholder="Skill Name"
-                                                />
-                                                <input
-                                                    type="text"
-                                                    name={`percentage_${skillIndex}`}
-                                                    value={skill.percentage}
-                                                    onChange={(e) =>
-                                                        handleSkillsChange(e, skillIndex, "percentage")
-                                                    }
-                                                    placeholder="Percentage"
-                                                />
-                                            </div>
-                                        ))}
+                                        {updateInput.skillsname.length > 0 && (
+                                            updateInput.skillsname.map((elem, ind) => (
+                                                <div key={ind}>
+                                                    <button value={updateInput.skillsname[ind]} className='tag_child'>
+                                                        {updateInput.skillsname[ind].name} -  {updateInput.skillsname[ind].percentage}
+                                                        <i className='fa-solid fa-x' onClick={(e) => deleteUpdateTag(ind)} ></i>
+                                                    </button>
+                                                </div>
+                                            ))
+                                        )}
+
+
+
+                                        <div className='grid grid-two-col'>
+                                            <input type="text" value={updatetech.name} onChange={setupdateName} placeholder="Skill Name" />
+                                            <input type="text" value={updatetech.percentage} onChange={setupdatePercentage} placeholder="Skill Percentage" />
+                                            <button onClick={putupdateTech} className='setbtn'>SET</button>
+                                        </div>
 
 
                                         <div className='grid grid-two-col'>
@@ -254,8 +277,8 @@ const SkillsPage = () => {
 
 
                 </div>
-            </section>
-        </div>
+            </section >
+        </div >
     )
 }
 

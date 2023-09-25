@@ -307,7 +307,9 @@ img {
 .home__blob-img {
   width: 170px;
 }
-
+.home {
+  background-color: #fff;
+}
 .home__data {
   grid-column: 1/3;
 }
@@ -448,7 +450,9 @@ img {
 .skills__container {
   row-gap: 0;
 }
-
+.skills__content {
+  height: fit-content;
+}
 .skills__header {
   display: flex;
   align-items: center;
@@ -629,9 +633,9 @@ img {
   transform: translate(6px, -7px);
 }
 
-.qualification [data-content] {
+/* .qualification [data-content] {
   display: none;
-}
+} */
 
 .qualification__active[data-content] {
   display: block;

@@ -17,6 +17,8 @@ const Portfolio = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedProject, setSelectedProject] = useState(null);
     const [openSkill, setOpenSkill] = useState(0);
+    const [switchTabExp, setswitchTabExp] = useState("education");
+
 
     const openModal = (projectIndex) => {
         // console.log(projectIndex)
@@ -141,24 +143,24 @@ const Portfolio = () => {
     // });
 
     /*==================== QUALIFICATION TABS ====================*/
-    const tabs = document.querySelectorAll("[data-target]");
-    const tabContents = document.querySelectorAll("[data-content]");
+    // const tabs = document.querySelectorAll("[data-target]");
+    // const tabContents = document.querySelectorAll("[data-content]");
 
-    tabs.forEach((tab) => {
-        tab.addEventListener("click", () => {
-            const target = document.querySelector(tab.dataset.target);
+    // tabs.forEach((tab) => {
+    //     tab.addEventListener("click", () => {
+    //         const target = document.querySelector(tab.dataset.target);
 
-            tabContents.forEach((tabContent) => {
-                tabContent.classList.remove("qualification__active");
-            });
-            target.classList.add("qualification__active");
+    //         tabContents.forEach((tabContent) => {
+    //             tabContent.classList.remove("qualification__active");
+    //         });
+    //         target.classList.add("qualification__active");
 
-            tabs.forEach((tab) => {
-                tab.classList.remove("qualification__active");
-            });
-            tab.classList.add("qualification__active");
-        });
-    });
+    //         tabs.forEach((tab) => {
+    //             tab.classList.remove("qualification__active");
+    //         });
+    //         tab.classList.add("qualification__active");
+    //     });
+    // });
 
     /*==================== SERVICES MODAL ====================*/
     const modalViews = document.querySelectorAll(".services__modal");
@@ -358,9 +360,12 @@ const Portfolio = () => {
                                 </a>
                             </div>
 
-                            <div className="home__img">
-                                <img src={userDetails.profileImage} alt="" className="about__img" />
-
+                            <div className="home__img hover14 ">
+                                <div>
+                                    <figure>
+                                        <img src={userDetails.profileImage} alt="" className="about__img" style={{ borderRadius: "50%" }} />
+                                    </figure>
+                                </div>
                             </div>
 
 
@@ -392,8 +397,13 @@ const Portfolio = () => {
                     <div className='bg-light shadow'>
 
                         <div className="about__container container-fluid p-5 grid">
-                            <img src={userDetails.AboutusImage} alt="" className="about__img" />
-
+                            <div className='hover14'>
+                                <div>
+                                    <figure>
+                                        <img src={userDetails.AboutusImage} alt="" className="about__img" />
+                                    </figure>
+                                </div>
+                            </div>
 
 
                             <div className="about__data">
@@ -458,7 +468,6 @@ const Portfolio = () => {
                                                         </div>
                                                         <div className="skills__bar">
                                                             <span className="skills__percentage" style={{ width: `${element.percentage}%` }}></span>
-
                                                         </div>
                                                     </div>
 
@@ -478,109 +487,117 @@ const Portfolio = () => {
 
                 <section className="qualification section">
                     <h2 className="section__title">Qualification</h2>
-                    <span className="section__subtitle">My persolan journey</span>
+                    <span className="section__subtitle">My personal journey</span>
 
-                    <div className="qualification__container container">
+                    <div className="qualification__container container-fluid">
                         <div className="qualification__tabs">
-                            <div className="qualification__button button--flex qualification__active" data-target="#education">
+                            <div
+                                className={`qualification__button button--flex ${switchTabExp === "education" ? "qualification__active" : ""
+                                    }`}
+                                data-target="#education"
+                                onClick={() => setswitchTabExp("education")}
+                            >
                                 <i className="uil uil-graduation-cap qualification__icon"></i>
                                 Education
                             </div>
-                            <div className="qualification__button button--flex" data-target="#work">
+                            <div
+                                className={`qualification__button button--flex ${switchTabExp === "work" ? "qualification__active" : ""
+                                    }`}
+                                data-target="#work"
+                                onClick={() => setswitchTabExp("work")}
+                            >
                                 <i className="uil uil-briefcase-alt qualification__icon"></i>
                                 Work
                             </div>
                         </div>
                         <div className="qualification__sections">
-
-                            <div className="qualification__content qualification__active" data-content id="education">
-
-                                <div className="qualification__data">
-                                    <div>
-                                        <h3 className="qualification__title">Computer Enginner</h3>
-                                        <span className="qualification__subtitle">Peru - University</span>
-                                        <div className="qualification__calendar">
-                                            <i className="uil uil-calendar-alt"></i>
-                                            2009 - 2014
+                            {switchTabExp === "education" ? (
+                                <div className="qualification__content qualification__active" data-content id="education">
+                                    <div className="qualification__data">
+                                        <div>
+                                            <h3 className="qualification__title">Computer Engineer</h3>
+                                            <span className="qualification__subtitle">Peru - University</span>
+                                            <div className="qualification__calendar">
+                                                <i className="uil uil-calendar-alt"></i>
+                                                2009 - 2014
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <span className="qualification__rounder"></span>
+                                            <span className="qualification__line"></span>
                                         </div>
                                     </div>
-
-                                    <div>
-                                        <span className="qualification__rounder"></span>
-                                        <span className="qualification__line"></span>
-                                    </div>
-                                </div>
-
-                                <div className="qualification__data">
-                                    <div></div>
-
-                                    <div>
-                                        <span className="qualification__rounder"></span>
-                                        <span className="qualification__line"></span>
-                                    </div>
-
-                                    <div>
-                                        <h3 className="qualification__title">Web Design</h3>
-                                        <span className="qualification__subtitle">Spain - Institute</span>
-                                        <div className="qualification__calendar">
-                                            <i className="uil uil-calendar-alt"></i>
-                                            2014 - 2017
+                                    <div className="qualification__data">
+                                        <div></div>
+                                        <div>
+                                            <span className="qualification__rounder"></span>
+                                            <span className="qualification__line"></span>
+                                        </div>
+                                        <div>
+                                            <h3 className="qualification__title">Web Design</h3>
+                                            <span className="qualification__subtitle">Spain - Institute</span>
+                                            <div className="qualification__calendar">
+                                                <i className="uil uil-calendar-alt"></i>
+                                                2014 - 2017
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-
-
-                            </div>
-                            {Array.isArray(userDetails.experience) ? (
-                                <div className="qualification__content" data-content id="work">
-                                    {userDetails.experience.map((elem, ind) => (
-                                        ind % 2 === 0 ? (
-                                            <React.Fragment key={ind}>
-                                                <div className="qualification__data">
-                                                    <div>
-                                                        <h3 className="qualification__title">{elem.title}</h3>
-                                                        <span className="qualification__subtitle">{elem.company} - {elem.companyLocation}</span>
-                                                        <div className="qualification__calendar">
-                                                            <i className="uil uil-calendar-alt"></i>
-                                                            2016 - 2018
+                            ) : (
+                                Array.isArray(userDetails.experience) ? (
+                                    <div className="qualification__content" data-content id="work">
+                                        {userDetails.experience.map((elem, ind) =>
+                                            ind % 2 === 0 ? (
+                                                <React.Fragment key={ind}>
+                                                    <div className="qualification__data">
+                                                        <div>
+                                                            <h3 className="qualification__title">{elem.title}</h3>
+                                                            <span className="qualification__subtitle">{elem.company} - {elem.companyLocation}</span>
+                                                            <div className="qualification__calendar">
+                                                                <i className="uil uil-calendar-alt"></i>
+                                                                2016 - 2018
+                                                                <p>{elem.description}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <span className="qualification__rounder"></span>
+                                                            <span className="qualification__line"></span>
                                                         </div>
                                                     </div>
-                                                    <div>
-                                                        <span className="qualification__rounder"></span>
-                                                        <span className="qualification__line"></span>
-                                                    </div>
-                                                </div>
-                                            </React.Fragment>
-                                        ) : (
-                                            <React.Fragment key={ind}>
-                                                <div className="qualification__data">
-                                                    <div></div>
-                                                    <div>
-                                                        <span className="qualification__rounder"></span>
-                                                        <span className="qualification__line"></span>
-                                                    </div>
-                                                    <div>
-                                                        <h3 className="qualification__title">{elem.title}</h3>
-                                                        <span className="qualification__subtitle">{elem.company} - {elem.companyLocation}</span>
-                                                        <div className="qualification__calendar">
-                                                            <i className="uil uil-calendar-alt"></i>
-                                                            2018 - 2020
+                                                </React.Fragment>
+                                            ) : (
+                                                <React.Fragment key={ind}>
+                                                    <div className="qualification__data">
+                                                        <div></div>
+                                                        <div>
+                                                            <span className="qualification__rounder"></span>
+                                                            <span className="qualification__line"></span>
+                                                        </div>
+                                                        <div>
+                                                            <h3 className="qualification__title">{elem.title}</h3>
+                                                            <span className="qualification__subtitle">{elem.company} - {elem.companyLocation}</span>
+                                                            <div className="qualification__calendar">
+                                                                <i className="uil uil-calendar-alt"></i>
+                                                                2018 - 2020
+                                                                <p>{elem.description}</p>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </React.Fragment>
-                                        )
-                                    ))}
-                                </div>
-                            ) : null}
+                                                </React.Fragment>
+                                            )
+                                        )}
+                                    </div>
+                                ) : null
+                            )}
                         </div>
                     </div>
                 </section>
 
 
 
+
                 {/* <Projects userDetails={userDetails} /> */}
-                <section className="portfolio section" id="portfolio" data-aos="fade-up" data-aos-offset="400">
+                <section className="portfolio section" id="portfolio" data-aos="fade-up" data-aos-offset="300">
                     <h2 className="section__title" data-aos="fade-right">Projects</h2>
                     <span className="section__subtitle">Most recent work</span>
 
@@ -600,8 +617,12 @@ const Portfolio = () => {
                                         {userDetails.projects.map((elem, ind) => (
                                             <SwiperSlide key={ind}>
                                                 <div className="portfolio__content grid swiper-slide">
-                                                    <img src={elem.images[0]} alt="" className="portfolio__img" />
+                                                    <div class="hover14 column">
+                                                        <figure>
 
+                                                            <img src={elem.images[0]} alt="" className="portfolio__img" />
+                                                        </figure>
+                                                    </div>
                                                     <div className="portfolio__data">
                                                         <h3 className="portfolio__title">{elem.title}</h3>
                                                         <p className="portfolio__description">{elem.description}</p>
@@ -627,7 +648,7 @@ const Portfolio = () => {
 
 
 
-                <section className="project section" data-aos="fade-left" data-aos-offset="800">
+                <section className="project section" data-aos="fade-left" data-aos-offset="300">
                     <div className="project__bg">
                         <div className="project__container container grid">
                             <div className="project__data">
@@ -647,8 +668,8 @@ const Portfolio = () => {
 
 
 
-                <section className="contact section" id="contact" data-aos="fade-up" data-aos-offset="600">
-                    <div className="section__title" data-aos="fade-right" data-aos-offset="600">Contact Me</div>
+                <section className="contact section" id="contact" data-aos="fade-up" data-aos-offset="300">
+                    <div className="section__title" data-aos="fade-right" data-aos-offset="300">Contact Me</div>
                     <span className="section__subtitle">Get in touch</span>
 
                     <div className="contact__container m-5 grid bg-light p-5 shadow">
@@ -708,7 +729,7 @@ const Portfolio = () => {
                         </form>
                     </div>
                 </section>
-                <footer className="footer" data-aos="fade-up" data-aos="fade-in" data-aos-offset="500">
+                <footer className="footer" data-aos="fade-up" data-aos="fade-in" data-aos-offset="300">
                     <div className="footer__bg">
                         <div className="footer__container container grid">
                             <div>
