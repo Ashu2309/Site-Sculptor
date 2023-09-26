@@ -10,7 +10,7 @@ import AboutPage from '../Create Helpers/AboutPage';
 import SkillsPage from '../Create Helpers/SkillsPage';
 import ExperiencePage from '../Create Helpers/ExperiencePage';
 import ProjectPage from '../Create Helpers/ProjectPage';
-
+import EducationPage from '../Create Helpers/EducationPage'
 
 const Create = () => {
     const username = localStorage.getItem("username")
@@ -131,6 +131,14 @@ const Create = () => {
                                     <div>
                                         <ExperiencePage />
                                         <button className="bg-info text-light btn" onClick={() => setActive("Contact")}> Save</button>
+                                    </div>
+                                </>
+                            }
+                            {active == "Education" &&
+                                <>
+                                    <div>
+                                        <EducationPage />
+                                        <button className="bg-info text-light btn" onClick={() => setActive("Education")}> Save</button>
                                     </div>
                                 </>
                             }

@@ -511,38 +511,57 @@ const Portfolio = () => {
                             </div>
                         </div>
                         <div className="qualification__sections">
+
                             {switchTabExp === "education" ? (
-                                <div className="qualification__content qualification__active" data-content id="education">
-                                    <div className="qualification__data">
-                                        <div>
-                                            <h3 className="qualification__title">Computer Engineer</h3>
-                                            <span className="qualification__subtitle">Peru - University</span>
-                                            <div className="qualification__calendar">
-                                                <i className="uil uil-calendar-alt"></i>
-                                                2009 - 2014
-                                            </div>
+                                (
+                                    Array.isArray(userDetails.education) ? (
+                                        <div className="qualification__content qualification__active" data-content id="education">
+                                            {userDetails.education.map((elem, ind) =>
+                                                ind % 2 === 0 ? (
+                                                    <React.Fragment key={ind}>
+                                                        <div className="qualification__data">
+                                                            <div>
+                                                                <h3 className="qualification__title">{elem.title}</h3>
+                                                                <span className="qualification__subtitle">{elem.collegeLocation} - {elem.college}</span>
+                                                                <div className="qualification__calendar">
+                                                                    <i className="uil uil-calendar-alt"></i>
+                                                                    {elem.startDate} - {elem.endDate}
+
+                                                                    <p>{elem.description}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <span className="qualification__rounder"></span>
+                                                                <span className="qualification__line"></span>
+                                                            </div>
+                                                        </div>
+                                                    </React.Fragment>
+                                                ) : (
+                                                    <React.Fragment key={ind}>
+                                                        <div className="qualification__data">
+                                                            <div></div>
+                                                            <div>
+                                                                <span className="qualification__rounder"></span>
+                                                                <span className="qualification__line"></span>
+                                                            </div>
+                                                            <div>
+                                                                <h3 className="qualification__title">{elem.title}</h3>
+                                                                <span className="qualification__subtitle">{elem.collegeLocation} - {elem.college}</span>
+                                                                <div className="qualification__calendar">
+                                                                    <i className="uil uil-calendar-alt"></i>
+                                                                    {elem.startDate} - {elem.endDate}
+                                                                    <p>{elem.description}</p>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </React.Fragment>
+                                                )
+                                            )}
                                         </div>
-                                        <div>
-                                            <span className="qualification__rounder"></span>
-                                            <span className="qualification__line"></span>
-                                        </div>
-                                    </div>
-                                    <div className="qualification__data">
-                                        <div></div>
-                                        <div>
-                                            <span className="qualification__rounder"></span>
-                                            <span className="qualification__line"></span>
-                                        </div>
-                                        <div>
-                                            <h3 className="qualification__title">Web Design</h3>
-                                            <span className="qualification__subtitle">Spain - Institute</span>
-                                            <div className="qualification__calendar">
-                                                <i className="uil uil-calendar-alt"></i>
-                                                2014 - 2017
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    ) : null
+                                )
+
                             ) : (
                                 Array.isArray(userDetails.experience) ? (
                                     <div className="qualification__content" data-content id="work">

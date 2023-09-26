@@ -134,6 +134,84 @@ export const deleteexpdata = async (req, res) => {
     }
 }
 
+// ==================education-===========================
+
+export const setedudata = async (req, res) => {
+
+    try {
+        const { user } = req.params;
+        const newEducation = req.body.input;
+        console.log(newEducation)
+        const options = { new: true, useFindAndModify: false };
+        const updatedData = await ProfileModel.findOneAndUpdate(
+            { "username": user },
+            { $push: { education: newEducation } },
+            options
+        );
+
+        if (!updatedData) {
+            return res.status(404).send("Profile not found");
+        }
+
+        return res.status(200).send("Education created successfully");
+    } catch (error) {
+        return res.status(404).send("Couldn't create education");
+    }
+}
+
+export const updateedudata = async (req, res) => {
+    try {
+        const { user } = req.params;
+        const { update } = req.body; // update is an object with fields to be updated
+        const { indexno } = req.body; // get the _id field of the update object
+
+        const options = { new: true, useFindAndModify: false };
+        const updatedData = await ProfileModel.findOneAndUpdate(
+            { "username": user },
+            { $set: { [`education.${indexno}`]: update } },
+            options
+        );
+
+        if (!updatedData) {
+            return res.status(404).send("Profile not found");
+        }
+
+        return res.status(200).send("Education updated successfully");
+    } catch (error) {
+        console.log(error)
+        return res.status(404).send("Couldn't update education");
+    }
+}
+
+export const deleteedudata = async (req, res) => {
+    try {
+        const { user, index } = req.params;
+        console.log(user, index)
+        const deleteData = await ProfileModel.findOneAndUpdate(
+            { "username": user },
+            { $unset: { [`education.${index}`]: 1 } }
+        );
+
+        if (!deleteData) {
+            return res.status(404).send("Profile not found");
+        }
+
+        await ProfileModel.findOneAndUpdate(
+            { "username": user },
+            { $pull: { "education": null } },
+            { new: true }
+        );
+
+        return res.status(200).send("Profile Deleted Successfully");
+
+
+        return res.status(200).send("Profile Deleted Successfully");
+    } catch (error) {
+        return res.status(500).send("Couldn't Delete");
+
+    }
+}
+
 
 // ==================project-===========================
 

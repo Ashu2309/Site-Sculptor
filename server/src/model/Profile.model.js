@@ -57,7 +57,7 @@ export const ProfileSchema = new mongoose.Schema({
     //experiences
     experience: [
         {
-            title: { type: String, default: "Microsoft" },
+            title: { type: String },
             company: { type: String },
             companyLocation: { type: String },
             startDate: { type: String },
@@ -65,6 +65,18 @@ export const ProfileSchema = new mongoose.Schema({
             description: { type: String },
         },
     ],
+    //education
+    education: [
+        {
+            title: { type: String },
+            college: { type: String },
+            collegeLocation: { type: String },
+            startDate: { type: String },
+            endDate: { type: String },
+            description: { type: String },
+        },
+    ],
+    //projects
     projects: [{
         title: { type: String, required: true },
         startDate: { type: String, required: true },
@@ -91,7 +103,7 @@ export const ProfileSchema = new mongoose.Schema({
         linkName: { type: String },
         linkUrl: { type: String, required: true }
     }],
-    messages: [
+    messages: [-
         {
             name: { type: String, required: true },       // The sender's name or ID
             email: { type: String, required: true },    // The recipient's name or ID

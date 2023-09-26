@@ -221,6 +221,38 @@ const UserState = (props) => {
             return error;
         }
     }
+    // =================education=========================
+    const saveEduDetails = async (input) => {
+        console.log(input)
+        try {
+            const username = localStorage.getItem("username")
+            const response = await axios.post(`profile/setedudata/${username}`, { input })
+            return response;
+        } catch (error) {
+            return error;
+        }
+    }
+    const updateEduDetails = async (input) => {
+        console.log(input)
+        try {
+            const username = localStorage.getItem("username")
+            const response = await axios.put(`profile/updateedudata/${username}`, input)
+            console.log(response)
+            return response
+        } catch (error) {
+            return error;
+        }
+    }
+    const deleteEduDetails = async (index) => {
+        console.log(index)
+        try {
+            const username = localStorage.getItem("username")
+            const response = await axios.delete(`profile/deleteedudata/${username}/${index}`)
+            return response;
+        } catch (error) {
+            return error;
+        }
+    }
 
     // ==============project page=============
     const saveProjDetails = async (input) => {
@@ -321,7 +353,10 @@ const UserState = (props) => {
     return (
         <>
             <UserContext.Provider
-                value={{ state, registerUser, verifyPassword, updateUser, generateOTP, verifyOTP, resetPassword, username, setUsername, saveUserDetails, getUserDetails, updateUserDetails, saveExpDetails, deleteExpDetails, updateExpDetails, saveProjDetails, updateProjDetails, deleteProjDetails, saveSkillDetails, updateSkillDetails, deleteSkillDetails, saveContactDetails, deleteContactDetails, getMsg }}
+                value={{
+                    state, registerUser, verifyPassword, updateUser, generateOTP, verifyOTP, resetPassword, username, setUsername, saveUserDetails, getUserDetails, updateUserDetails, saveExpDetails, deleteExpDetails, updateExpDetails,
+                    saveEduDetails, deleteEduDetails, updateEduDetails, saveProjDetails, updateProjDetails, deleteProjDetails, saveSkillDetails, updateSkillDetails, deleteSkillDetails, saveContactDetails, deleteContactDetails, getMsg
+                }}
             >{props.children}</UserContext.Provider>
         </>
     )

@@ -35,6 +35,10 @@ router.route('/setexpdata/:user').post(profileController.setexpdata);
 router.route('/updateexpdata/:user').put(profileController.updateexpdata);
 router.route('/deleteexpdata/:user/:index').delete(profileController.deleteexpdata);
 
+router.route('/setedudata/:user').post(profileController.setedudata);
+router.route('/updateedudata/:user').put(profileController.updateedudata);
+router.route('/deleteedudata/:user/:index').delete(profileController.deleteedudata);
+
 router.route('/setprojectdata/:user').post(profileController.setprojectdata);
 router.route('/updateprojectdata/:user').put(profileController.updateprojectdata);
 router.route('/deleteprojectdata/:user/:index').delete(profileController.deleteprojectdata);
